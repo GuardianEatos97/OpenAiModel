@@ -1,5 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Runtime;
+using CommunityToolkit.Maui;
+using OpenAiModel.Configuration;
+using OpenAiModel.Services;
+using OpenAiModel.Services.Interfaces;
+using OpenAiModel.ViewModels;
+using OpenAiModel.Views;
 
 namespace OpenAiModel
 {
@@ -10,6 +16,7 @@ namespace OpenAiModel
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -27,7 +34,7 @@ namespace OpenAiModel
 
         public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
         {
-            mauiAppBuilder.Services.AddTransient<IAiAssistant, LoadsheddingAiAssistant>();
+            mauiAppBuilder.Services.AddTransient<IAiAssistant, IAiAssistant>();
             mauiAppBuilder.Services.AddTransient<ISettings, ConstantSettings>();
 
             // More services registered here.
@@ -37,8 +44,8 @@ namespace OpenAiModel
 
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
-            mauiAppBuilder.Services.AddSingleton<LoadsheddingQuestionViewModel>();
-            mauiAppBuilder.Services.AddSingleton<LoadsheddingAnswerViewModel>();
+            mauiAppBuilder.Services.AddSingleton<QuestionViewModel>();
+            mauiAppBuilder.Services.AddSingleton<AnswerViewModel>();
 
             // More view-models registered here.
 
@@ -47,8 +54,8 @@ namespace OpenAiModel
 
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
         {
-            mauiAppBuilder.Services.AddSingleton<LoadsheddingQuestionPage>();
-            mauiAppBuilder.Services.AddSingleton<LoadsheddingAnswerPage>();
+            mauiAppBuilder.Services.AddSingleton<YodaQuestionPage>();
+            mauiAppBuilder.Services.AddSingleton<YodaAnswerPage>();
 
             // More views registered here.
 
