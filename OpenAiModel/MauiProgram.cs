@@ -34,7 +34,7 @@ namespace OpenAiModel
 
         public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
         {
-            mauiAppBuilder.Services.AddTransient<IAiAssistant, IAiAssistant>();
+            mauiAppBuilder.Services.AddTransient<IAiAssistant, YodaAiAssistant>();
             mauiAppBuilder.Services.AddTransient<ISettings, ConstantSettings>();
 
             // More services registered here.

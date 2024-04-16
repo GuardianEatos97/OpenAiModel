@@ -48,7 +48,7 @@ namespace OpenAiModel.ViewModels
             _assistant = assistant;
 
             ChatHistory = new ObservableCollection<ChatMessage>();
-            ChatHistory.Add(new ChatMessage { MessageType = Enums.ChatMessageTypeEnum.Inbound, MessageBody = "Hello, how can I help you today?" });
+            ChatHistory.Add(new ChatMessage { MessageType = Enums.ChatMessageTypeEnum.Inbound, MessageBody = "Greetings Young Padawan. Patience you must have, for answers I shall provide."});
         }
 
         [RelayCommand]

@@ -23,8 +23,8 @@ namespace OpenAiModel.ViewModels
             }
         }
 
-       /* public LoadsheddingAnswerViewModel()
+        public AnswerViewModel()
         {
-        }*/
+        }
     }
 }
