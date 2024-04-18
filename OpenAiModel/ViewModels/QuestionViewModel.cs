@@ -8,6 +8,7 @@ using OpenAiModel.Services.Interfaces;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Core.Platform;
+using Azure;
 
 namespace OpenAiModel.ViewModels
 {
@@ -58,7 +59,7 @@ namespace OpenAiModel.ViewModels
      {
          { "Response", message }
      };
-            await Shell.Current.GoToAsync($"loadsheddinganswer", navigationParameter);
+            await Shell.Current.GoToAsync($"answer", navigationParameter);
 
         }
 
@@ -71,10 +72,10 @@ namespace OpenAiModel.ViewModels
       {
           { "Response", model }
       };
-              await Shell.Current.GoToAsync($"loadsheddinganswer", navigationParameter);
+              await Shell.Current.GoToAsync($"answer", navigationParameter);
             */
 
-
+            //Answer = await _assistant.GetCompletion();
 
             var inboundMessages = ChatHistory.Where(x => x.MessageType == Enums.ChatMessageTypeEnum.Inbound).ToList();
 

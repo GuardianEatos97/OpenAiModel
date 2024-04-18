@@ -12,8 +12,8 @@ namespace OpenAiModel
 
         private void RegisterRoutes()
         {
-            Routing.RegisterRoute("loadsheddingquestion", typeof(YodaQuestionPage));
-            Routing.RegisterRoute("loadsheddinganswer", typeof(YodaAnswerPage));
+            Routing.RegisterRoute("question", typeof(YodaQuestionPage));
+            Routing.RegisterRoute("answer", typeof(YodaAnswerPage));
         }
     }
 }
