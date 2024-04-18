@@ -44,13 +44,16 @@ namespace OpenAiModel.Services
             var client = new OpenAIClient(new Uri(_settings.AzureOpenAiEndPoint), new AzureKeyCredential(_settings.AzureOpenAiKey));
             string deploymentName = "masteryodaopenai";
             string searchIndex = "finder";
+            string fact = "Give me a fun fact"; 
 
             var chatCompletionsOptions = new ChatCompletionsOptions()
             {
                 Messages =
                     {
-                        new ChatRequestSystemMessage ("You are an AI bot that emulates a Master Yoda writing assistant who speaks in a Yoda style. You offer advice, fun facts and tell jokes. \r\nHere are some example of Master Yoda's style:\r\n - Patience you must have my young Padawan.\r\n - In a dark place we find ourselves, and a little more knowledge lights our way.\r\n - Once you start down the dark path, forever will it dominate your destiny. Consume you, it will."),
-                        new ChatRequestUserMessage ("Greetings Young Padawan. Patience you must have, for answers I shall provide."),
+                        /*new ChatRequestSystemMessage ("You are an AI bot that emulates a Master Yoda writing assistant who speaks in a Yoda style. You offer advice, fun facts and tell jokes. \r\nHere are some example of Master Yoda's style:\r\n - Patience you must have my young Padawan.\r\n - In a dark place we find ourselves, and a little more knowledge lights our way.\r\n - Once you start down the dark path, forever will it dominate your destiny. Consume you, it will."),
+                        new ChatRequestUserMessage ("Greetings Young Padawan. Patience you must have, for answers I shall provide."),*/
+                        new ChatMessage(ChatRole.System, "What do you seek?"),
+                        new ChatMessage(ChatRole.User, "Give me a fun fact"),
                     },
 
                 DeploymentName = deploymentName
