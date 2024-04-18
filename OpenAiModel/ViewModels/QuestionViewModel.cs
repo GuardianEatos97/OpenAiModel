@@ -58,7 +58,7 @@ namespace OpenAiModel.ViewModels
      {
          { "Response", message }
      };
-            await Shell.Current.GoToAsync($"Answer", navigationParameter);
+            await Shell.Current.GoToAsync($"loadsheddinganswer", navigationParameter);
 
         }
 

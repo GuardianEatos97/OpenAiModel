@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\sendicon.png" />
+	  <None Remove="Resources\Images\yoda.png" />
 	</ItemGroup>
 
 	<ItemGroup>

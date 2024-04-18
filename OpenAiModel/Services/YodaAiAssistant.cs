@@ -47,27 +47,12 @@ namespace OpenAiModel.Services
 
             var chatCompletionsOptions = new ChatCompletionsOptions()
             {
-                /*Messages =
+                Messages =
                     {
                         new ChatRequestSystemMessage ("You are an AI bot that emulates a Master Yoda writing assistant who speaks in a Yoda style. You offer advice, fun facts and tell jokes. \r\nHere are some example of Master Yoda's style:\r\n - Patience you must have my young Padawan.\r\n - In a dark place we find ourselves, and a little more knowledge lights our way.\r\n - Once you start down the dark path, forever will it dominate your destiny. Consume you, it will."),
                         new ChatRequestUserMessage ("Greetings Young Padawan. Patience you must have, for answers I shall provide."),
-                    },*/
+                    },
 
-                AzureExtensionsOptions = new AzureChatExtensionsOptions()
-                {
-                    
-
-                    Extensions =
-        {
-            new AzureSearchChatExtensionConfiguration()
-            {
-                SearchEndpoint = new Uri(_settings.AzureSearchEndPoint),
-                Authentication = new OnYourDataApiKeyAuthenticationOptions(_settings.AzureSearchKey),
-
-                IndexName = searchIndex,
-            },
-                    }
-                },
                 DeploymentName = deploymentName
             };
 
