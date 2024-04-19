@@ -10,9 +10,9 @@ namespace OpenAiModel.ViewModels
     [QueryProperty(nameof(Response), "Response")]
     public class AnswerViewModel : BaseViewModel
     {
-        private ChatMessage _questionResponseModel;
+        private YodaChatMessage _questionResponseModel;
 
-        public ChatMessage Response
+        public YodaChatMessage Response
         {
             get { return _questionResponseModel; }
             set

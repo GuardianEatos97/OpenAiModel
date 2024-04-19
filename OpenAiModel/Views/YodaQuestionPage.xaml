@@ -23,7 +23,7 @@
             </Setter>
         </Style>
         <ResourceDictionary>
-            <DataTemplate x:Key="inboundChatTemplate"  x:DataType="models:ChatMessage">
+            <DataTemplate x:Key="inboundChatTemplate"  x:DataType="models:YodaChatMessage">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -40,7 +40,7 @@
                     
                 </Grid>
             </DataTemplate>
-            <DataTemplate x:Key="outboundChatTemplate" x:DataType="models:ChatMessage">
+            <DataTemplate x:Key="outboundChatTemplate" x:DataType="models:YodaChatMessage">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

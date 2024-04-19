@@ -7,7 +7,7 @@ using OpenAiModel.Enums;
 
 namespace OpenAiModel.Models
 {
-    public class ChatMessage
+    public class YodaChatMessage
     {
         public ChatMessageTypeEnum MessageType { get; set; }
         public string? MessageBody { get; set; }

@@ -22,22 +22,22 @@ namespace OpenAiModel.Services
             _settings = settings;
         }
 
-        private IList<ChatRequestMessage> BuildChatContext(IList<ChatMessage> chatInboundHistory, ChatMessage userMessage)
+        private IList<ChatMessage> BuildChatContext(IList<YodaChatMessage> chatInboundHistory, YodaChatMessage userMessage)
         {
-            var chatContext = new List<ChatRequestMessage>();
+            var chatContext = new List<ChatMessage>();
 
-            chatContext.Add(new ChatRequestSystemMessage(AssistantBehaviorDescription));
+            chatContext.Add(new ChatMessage(ChatRole.System, AssistantBehaviorDescription));
 
             foreach (var chatMessage in chatInboundHistory)
-                chatContext.Add(new ChatRequestAssistantMessage(chatMessage.MessageBody));
+                chatContext.Add(new ChatMessage(ChatRole.User, chatMessage.MessageBody));
 
-            chatContext.Add(new ChatRequestUserMessage(userMessage.MessageBody));
+            chatContext.Add(new ChatMessage(ChatRole.User, userMessage.MessageBody));
 
             return chatContext;
 
         }
 
-        public ChatResponseMessage GetCompletion(IList<ChatMessage> chatInboundHistory, ChatMessage userMessage)
+        public ChatMessage GetCompletion(IList<YodaChatMessage> chatInboundHistory, YodaChatMessage userMessage)
         {
             var messages = BuildChatContext(chatInboundHistory, userMessage);
 
@@ -50,27 +50,21 @@ namespace OpenAiModel.Services
             {
                 Messages =
                     {
-                        new ChatRequestSystemMessage ("You are an AI bot that emulates a Master Yoda writing assistant who speaks in a Yoda style. You offer advice, fun facts and tell jokes. \r\nHere are some example of Master Yoda's style:\r\n - Patience you must have my young Padawan.\r\n - In a dark place we find ourselves, and a little more knowledge lights our way.\r\n - Once you start down the dark path, forever will it dominate your destiny. Consume you, it will."),
-                        new ChatRequestUserMessage ("Greetings Young Padawan. Patience you must have, for answers I shall provide."),
+                        new ChatMessage (ChatRole.System,"You are an AI bot that emulates a Master Yoda writing assistant who speaks in a Yoda style. You offer advice, fun facts and tell jokes. \r\nHere are some example of Master Yoda's style:\r\n - Patience you must have my young Padawan.\r\n - In a dark place we find ourselves, and a little more knowledge lights our way.\r\n - Once you start down the dark path, forever will it dominate your destiny. Consume you, it will."),
+                        new ChatMessage (ChatRole.User,"Greetings Young Padawan. Patience you must have, for answers I shall provide."),
                        /* new ChatMessage(ChatRole.System, "What do you seek?"),
                         new ChatMessage(ChatRole.User, "Give me a fun fact"),*/
-                    },
-
-                DeploymentName = deploymentName
+                    }
             };
 
             foreach (var message in messages)
                 chatCompletionsOptions.Messages.Add(message);
 
-            Response<ChatCompletions> response = client.GetChatCompletions(chatCompletionsOptions);
+            Response<ChatCompletions> response = client.GetChatCompletions(deploymentName, chatCompletionsOptions);
 
-            ChatResponseMessage responseMessage = response.Value.Choices[0].Message;
+            ChatMessage responseMessage = response.Value.Choices[0].Message;
 
             return responseMessage;
-
         }
-
-
-
     }
 }

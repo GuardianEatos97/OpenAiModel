@@ -10,6 +10,7 @@ namespace OpenAiModel.Services.Interfaces
 {
     public interface IAiAssistant
     {
-        ChatResponseMessage GetCompletion(IList<ChatMessage> chatInboundHistory, ChatMessage userMessage);
+
+        ChatMessage GetCompletion(IList<YodaChatMessage> chatInboundHistory, YodaChatMessage userMessage);
     }
 }

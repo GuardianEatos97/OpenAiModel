@@ -16,9 +16,9 @@ namespace OpenAiModel.ViewModels
     {
         private IAiAssistant _assistant;
 
-        private ObservableCollection<ChatMessage> _chatHistory;
+        private ObservableCollection<YodaChatMessage> _chatHistory;
 
-        public ObservableCollection<ChatMessage> ChatHistory
+        public ObservableCollection<YodaChatMessage> ChatHistory
         {
             get { return _chatHistory; }
             set
@@ -48,12 +48,12 @@ namespace OpenAiModel.ViewModels
         {
             _assistant = assistant;
 
-            ChatHistory = new ObservableCollection<ChatMessage>();
-            ChatHistory.Add(new ChatMessage { MessageType = Enums.ChatMessageTypeEnum.Inbound, MessageBody = "Greetings Young Padawan. Patience you must have, for answers I shall provide."});
+            ChatHistory = new ObservableCollection<YodaChatMessage>();
+            ChatHistory.Add(new YodaChatMessage { MessageType = Enums.ChatMessageTypeEnum.Inbound, MessageBody = "Greetings Young Padawan. Patience you must have, for answers I shall provide."});
         }
 
         [RelayCommand]
-        public async Task ChatSelected(ChatMessage message)
+        public async Task ChatSelected(YodaChatMessage message)
         {
             var navigationParameter = new Dictionary<string, object>
      {
@@ -79,14 +79,14 @@ namespace OpenAiModel.ViewModels
 
             var inboundMessages = ChatHistory.Where(x => x.MessageType == Enums.ChatMessageTypeEnum.Inbound).ToList();
 
-            var currentChatMessage = new ChatMessage { MessageType = Enums.ChatMessageTypeEnum.Outbound, MessageBody = CurrentQuestion };
+            var currentChatMessage = new YodaChatMessage { MessageType = Enums.ChatMessageTypeEnum.Outbound, MessageBody = CurrentQuestion };
 
             try
             {
                 var response = _assistant.GetCompletion(inboundMessages, currentChatMessage);
                 ChatHistory.Add(currentChatMessage);
 
-                var responseChatMessage = new ChatMessage { MessageType = Enums.ChatMessageTypeEnum.Inbound, MessageBody = response.Content };
+                var responseChatMessage = new YodaChatMessage { MessageType = Enums.ChatMessageTypeEnum.Inbound, MessageBody = response.Content };
                 ChatHistory.Add(responseChatMessage);
 
 
